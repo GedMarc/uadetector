@@ -51,10 +51,10 @@ public final class Browser
 	@NotNull
 	private final String url;
 
-	public Browser(final int id, @NotNull final UserAgentFamily family, @NotNull final String familyName,
-	               @NotNull final SortedSet<BrowserPattern> patterns, @NotNull final BrowserType type,
-	               @NotNull final OperatingSystem operatingSystem, @NotNull final String icon, @NotNull final String infoUrl,
-	               @NotNull final String producer, @NotNull final String producerUrl, @NotNull final String url)
+	public Browser(int id, @NotNull UserAgentFamily family, @NotNull String familyName,
+	               @NotNull SortedSet<BrowserPattern> patterns, @NotNull BrowserType type,
+	               @NotNull OperatingSystem operatingSystem, @NotNull String icon, @NotNull String infoUrl,
+	               @NotNull String producer, @NotNull String producerUrl, @NotNull String url)
 	{
 		this.id = Check.notNegative(id, "id");
 		this.family = Check.notNull(family, "family");
@@ -70,12 +70,12 @@ public final class Browser
 		hash = buildHashCode(id, family, familyName, patterns, type, operatingSystem, icon, infoUrl, producer, producerUrl, url);
 	}
 
-	private static int buildHashCode(final int id, @NotNull final UserAgentFamily family, @NotNull final String familyName,
-	                                 @NotNull final SortedSet<BrowserPattern> patterns, @NotNull final BrowserType type,
-	                                 final OperatingSystem operatingSystem, @NotNull final String icon, @NotNull final String infoUrl,
-	                                 @NotNull final String producer, @NotNull final String producerUrl, @NotNull final String url)
+	private static int buildHashCode(int id, @NotNull UserAgentFamily family, @NotNull String familyName,
+	                                 @NotNull SortedSet<BrowserPattern> patterns, @NotNull BrowserType type,
+	                                 OperatingSystem operatingSystem, @NotNull String icon, @NotNull String infoUrl,
+	                                 @NotNull String producer, @NotNull String producerUrl, @NotNull String url)
 	{
-		final int prime = 31;
+		int prime = 31;
 		int result = 1;
 		result = prime * result + id;
 		result = prime * result + family.hashCode();
@@ -94,7 +94,7 @@ public final class Browser
 	/**
 	 * Copy values from itself to a <code>UserAgentInfo.Builder</code>.
 	 */
-	public void copyTo(@NotNull final UserAgent.Builder builder)
+	public void copyTo(@NotNull UserAgent.Builder builder)
 	{
 		builder.setFamily(family);
 		builder.setIcon(icon);
@@ -182,7 +182,7 @@ public final class Browser
 	}
 
 	@Override
-	public boolean equals(final Object obj)
+	public boolean equals(Object obj)
 	{
 		if (this == obj)
 		{
@@ -196,7 +196,7 @@ public final class Browser
 		{
 			return false;
 		}
-		final Browser other = (Browser) obj;
+		Browser other = (Browser) obj;
 		if (id != other.id)
 		{
 			return false;
@@ -254,7 +254,7 @@ public final class Browser
 	@Override
 	public String toString()
 	{
-		final StringBuilder builder = new StringBuilder();
+		StringBuilder builder = new StringBuilder();
 		builder.append("Browser [id=");
 		builder.append(id);
 		builder.append(", family=");
@@ -325,7 +325,7 @@ public final class Browser
 			//No config
 		}
 
-		public Builder(@NotNull final Browser browser)
+		public Builder(@NotNull Browser browser)
 		{
 			Check.notNull(browser, "browser");
 			id = Check.notNegative(browser.getId(), "browser.getId()");
@@ -341,7 +341,7 @@ public final class Browser
 			url = Check.notNull(browser.getUrl(), "browser.getUrl()");
 		}
 
-		protected Builder(@NotNull final Builder builder)
+		protected Builder(@NotNull Builder builder)
 		{
 			Check.notNull(builder, "builder");
 			family = builder.family;
@@ -377,7 +377,7 @@ public final class Browser
 		}
 
 		@NotNull
-		private Builder setFamily(@NotNull final UserAgentFamily family)
+		private Builder setFamily(@NotNull UserAgentFamily family)
 		{
 			this.family = Check.notNull(family, "family");
 			return this;
@@ -390,7 +390,7 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setFamilyName(@NotNull final String familyName)
+		public Builder setFamilyName(@NotNull String familyName)
 		{
 			this.familyName = Check.notNull(familyName, "familyName");
 			return setFamily(UserAgentFamily.evaluate(familyName));
@@ -403,7 +403,7 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setIcon(@NotNull final String icon)
+		public Builder setIcon(@NotNull String icon)
 		{
 			this.icon = Check.notNull(icon, "icon");
 			return this;
@@ -415,16 +415,16 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setId(@NotNull final String id)
+		public Builder setId(int id)
 		{
-			setId(Integer.parseInt(Check.notEmpty(id, "id")));
+			this.id = Check.notNegative(id, "id");
 			return this;
 		}
 
 		@NotNull
-		public Builder setId(final int id)
+		public Builder setId(@NotNull String id)
 		{
-			this.id = Check.notNegative(id, "id");
+			setId(Integer.parseInt(Check.notEmpty(id, "id")));
 			return this;
 		}
 
@@ -435,7 +435,7 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setInfoUrl(@NotNull final String infoUrl)
+		public Builder setInfoUrl(@NotNull String infoUrl)
 		{
 			this.infoUrl = Check.notNull(infoUrl, "infoUrl");
 			return this;
@@ -447,7 +447,7 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setOperatingSystem(@NotNull final OperatingSystem operatingSystem)
+		public Builder setOperatingSystem(@NotNull OperatingSystem operatingSystem)
 		{
 			this.operatingSystem = Check.notNull(operatingSystem, "operatingSystem");
 			return this;
@@ -460,7 +460,7 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setPatterns(@NotNull final SortedSet<BrowserPattern> patterns)
+		public Builder setPatterns(@NotNull SortedSet<BrowserPattern> patterns)
 		{
 			this.patterns = new TreeSet<>(Check.notNull(patterns, "patterns"));
 			return this;
@@ -473,7 +473,7 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setProducer(@NotNull final String producer)
+		public Builder setProducer(@NotNull String producer)
 		{
 			this.producer = Check.notNull(producer, "producer");
 			return this;
@@ -486,7 +486,7 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setProducerUrl(@NotNull final String producerUrl)
+		public Builder setProducerUrl(@NotNull String producerUrl)
 		{
 			this.producerUrl = Check.notNull(producerUrl, "producerUrl");
 			return this;
@@ -498,7 +498,7 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setType(@NotNull final BrowserType type)
+		public Builder setType(@NotNull BrowserType type)
 		{
 			this.type = Check.notNull(type, "type");
 			setTypeId(type.getId());
@@ -506,7 +506,7 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setTypeId(final int typeId)
+		public Builder setTypeId(int typeId)
 		{
 			this.typeId = Check.notNegative(typeId, "typeId");
 			return this;
@@ -518,7 +518,7 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setTypeId(@NotNull final String typeId)
+		public Builder setTypeId(@NotNull String typeId)
 		{
 			setTypeId(Integer.parseInt(Check.notEmpty(typeId, "typeId")));
 			return this;
@@ -531,7 +531,7 @@ public final class Browser
 		}
 
 		@NotNull
-		public Builder setUrl(@NotNull final String url)
+		public Builder setUrl(@NotNull String url)
 		{
 			this.url = Check.notNull(url, "url");
 			return this;
