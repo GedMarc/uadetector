@@ -15,6 +15,7 @@
  ******************************************************************************/
 package net.sf.uadetector.internal.data;
 
+import net.sf.uadetector.VersionParserTest;
 import org.junit.Test;
 
 import java.io.*;
@@ -39,13 +40,12 @@ public class ActualityOfDtdTest
 		onlineStream.close();
 
 		// read DTD local
-		InputStreamReader localReader = new InputStreamReader(this.getClass()
-		                                                          .getClassLoader()
-		                                                          .getResourceAsStream(currentDefinition));
+		InputStreamReader localReader = new InputStreamReader(VersionParserTest.class
+				                                                      .getResourceAsStream(currentDefinition));
 		String localDtd = read(localReader);
 		localReader.close();
 
-		assertThat(localDtd).isEqualTo(onlineDtd);
+		assertThat(localDtd.replaceAll("\\s+", "")).isEqualTo(onlineDtd.replaceAll("\\s+", ""));
 	}
 
 	private String read(Reader reader) throws IOException

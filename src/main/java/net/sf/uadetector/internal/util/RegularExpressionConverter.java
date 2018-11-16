@@ -343,8 +343,8 @@ public final class RegularExpressionConverter
 			@Override
 			public int compareType(@javax.validation.constraints.NotNull Flag f1, @javax.validation.constraints.NotNull Flag f2)
 			{
-				Character c1 = Character.valueOf(f1.getCharacter());
-				Character c2 = Character.valueOf(f2.getCharacter());
+				Character c1 = f1.getCharacter();
+				Character c2 = f2.getCharacter();
 				return c1.compareTo(c2);
 			}
 		}
