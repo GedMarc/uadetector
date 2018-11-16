@@ -323,7 +323,6 @@ public final class RegularExpressionConverter
 		 */
 		public static Flag evaluateByCharacter(char flag)
 		{
-			Check.notNegative(flag, "flag");
 			Flag result = null;
 			for (Flag value : values())
 			{
