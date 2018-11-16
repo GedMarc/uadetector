@@ -68,8 +68,6 @@ public abstract class AbstractUserAgentStringParser
 	/**
 	 * Examines the user agent string whether it is a robot.
 	 *
-	 * @param userAgent
-	 * 		String of an user agent
 	 * @param builder
 	 * 		Builder for an user agent information
 	 *
@@ -100,8 +98,6 @@ public abstract class AbstractUserAgentStringParser
 	/**
 	 * Examines the user agent string whether it is a browser.
 	 *
-	 * @param userAgent
-	 * 		String of an user agent
 	 * @param builder
 	 * 		Builder for an user agent information
 	 */
@@ -136,8 +132,6 @@ public abstract class AbstractUserAgentStringParser
 	/**
 	 * Examines the operating system of the user agent string, if not available.
 	 *
-	 * @param userAgent
-	 * 		String of an user agent
 	 * @param builder
 	 * 		Builder for an user agent information
 	 */
@@ -164,8 +158,6 @@ public abstract class AbstractUserAgentStringParser
 	/**
 	 * Examines the user agent string whether has a specific device category.
 	 *
-	 * @param userAgent
-	 * 		String of an user agent
 	 * @param builder
 	 * 		Builder for an user agent information
 	 */

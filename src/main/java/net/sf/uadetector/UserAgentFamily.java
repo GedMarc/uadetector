@@ -4480,8 +4480,7 @@ public enum UserAgentFamily
 			if (value.getName()
 			         .equalsIgnoreCase(family))
 			{
-				result = value;
-				break;
+				return value;
 			}
 		}
 
@@ -4510,10 +4509,9 @@ public enum UserAgentFamily
 		{
 			Matcher m = value.getPattern()
 			                 .matcher(family);
-			if (m.matches())
+			if (m.find())
 			{
-				result = value;
-				break;
+				return value;
 			}
 		}
 
