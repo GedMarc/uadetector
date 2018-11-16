@@ -92,11 +92,7 @@ public final class BrowserType
 		{
 			return false;
 		}
-		if (!name.equals(other.name))
-		{
-			return false;
-		}
-		return true;
+		return name.equals(other.name);
 	}
 
 	@Override

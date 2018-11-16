@@ -27,6 +27,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
 
 public final class XmlDataHandler
 		extends DefaultHandler
@@ -219,7 +220,7 @@ public final class XmlDataHandler
 	}
 
 	@Override
-	public void characters(char ch[], int start, int length) throws SAXException
+	public void characters(char ch[], int start, int length)
 	{
 		buffer.append(new String(ch, start, length));
 	}
@@ -348,7 +349,7 @@ public final class XmlDataHandler
 		}
 		catch (IllegalArgumentException e)
 		{
-			LOG.warning("Can not append browser pattern: " + e.getLocalizedMessage());
+			LOG.log(Level.WARNING, "Can not append browser pattern: " + e.getLocalizedMessage(), e);
 		}
 		browserPatternBuilder = new BrowserPattern.Builder();
 	}
@@ -367,7 +368,7 @@ public final class XmlDataHandler
 		}
 		catch (IllegalArgumentException e)
 		{
-			LOG.warning("Can not append OS pattern: " + e.getLocalizedMessage());
+			LOG.log(Level.WARNING, "Can not append OS pattern: " + e.getLocalizedMessage(), e);
 		}
 		operatingSystemPatternBuilder = new OperatingSystemPattern.Builder();
 	}
@@ -386,7 +387,7 @@ public final class XmlDataHandler
 		}
 		catch (IllegalArgumentException e)
 		{
-			LOG.warning("Can not append device pattern: " + e.getLocalizedMessage());
+			LOG.log(Level.WARNING, "Can not append device pattern: " + e.getLocalizedMessage(), e);
 		}
 		devicePatternBuilder = new DevicePattern.Builder();
 	}

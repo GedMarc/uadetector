@@ -18,7 +18,6 @@ package net.sf.uadetector.datastore;
 import net.sf.uadetector.exception.CanNotOpenStreamException;
 import net.sf.uadetector.internal.Check;
 import net.sf.uadetector.internal.data.Data;
-import net.sf.uadetector.internal.util.Closeables;
 import net.sf.uadetector.internal.util.FileUtil;
 import net.sf.uadetector.internal.util.UrlUtil;
 
@@ -181,25 +180,13 @@ final class UpdateOperationWithCacheFileTask
 			}
 
 			File tempFile = createTemporaryFile(file);
-
-			FileOutputStream outputStream = null;
-			boolean threw = true;
-			try
+			try (FileOutputStream outputStream = new FileOutputStream(tempFile))
 			{
 				// write data to temporary file
-				outputStream = new FileOutputStream(tempFile);
 				outputStream.write(data.getBytes(charset));
-
 				// delete the original file
 				deleteFile(file);
-
-				threw = false;
 			}
-			finally
-			{
-				Closeables.close(outputStream, threw);
-			}
-
 			// rename the new file to the original one
 			renameFile(tempFile, file);
 		}

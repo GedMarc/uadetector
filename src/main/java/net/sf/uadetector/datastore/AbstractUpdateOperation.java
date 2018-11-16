@@ -180,8 +180,7 @@ public abstract class AbstractUpdateOperation
 		     InputStreamReader reader = new InputStreamReader(stream, charset);
 		     LineNumberReader lnr = new LineNumberReader(reader))
 		{
-			String line = lnr.readLine();
-			return line;
+			return lnr.readLine();
 		}
 	}
 

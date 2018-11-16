@@ -244,11 +244,7 @@ public final class Browser
 		{
 			return false;
 		}
-		if (!url.equals(other.url))
-		{
-			return false;
-		}
-		return true;
+		return url.equals(other.url);
 	}
 
 	@Override
@@ -315,7 +311,7 @@ public final class Browser
 
 		private BrowserType type;
 
-		private transient int typeId = Integer.MIN_VALUE;
+		private int typeId = Integer.MIN_VALUE;
 
 		@NotNull
 		private String url = EMPTY;

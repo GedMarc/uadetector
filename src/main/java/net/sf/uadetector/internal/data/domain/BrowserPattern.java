@@ -190,11 +190,7 @@ public final class BrowserPattern
 		{
 			return false;
 		}
-		if (pattern.flags() != other.pattern.flags())
-		{
-			return false;
-		}
-		return true;
+		return pattern.flags() == other.pattern.flags();
 	}
 
 	@Override

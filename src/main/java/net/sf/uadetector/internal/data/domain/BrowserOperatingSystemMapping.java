@@ -93,11 +93,7 @@ public final class BrowserOperatingSystemMapping
 		{
 			return false;
 		}
-		if (operatingSystemId != other.operatingSystemId)
-		{
-			return false;
-		}
-		return true;
+		return operatingSystemId == other.operatingSystemId;
 	}
 
 	@Override
@@ -155,24 +151,6 @@ public final class BrowserOperatingSystemMapping
 		}
 
 		/**
-		 * Sets the identification number of a browser entry.
-		 *
-		 * @param browserId
-		 * 		identification number
-		 *
-		 * @throws net.sf.uadetector.exception.IllegalNegativeArgumentException
-		 * 		if the given number is smaller than {@code 0}
-		 */
-		@javax.validation.constraints.NotNull
-		public Builder setBrowserId(int browserId)
-		{
-			Check.notNegative(browserId, "browserId");
-
-			this.browserId = browserId;
-			return this;
-		}
-
-		/**
 		 * Sets the identification number of a browser entry via a string.
 		 *
 		 * @param browserId
@@ -196,6 +174,24 @@ public final class BrowserOperatingSystemMapping
 		}
 
 		/**
+		 * Sets the identification number of a browser entry.
+		 *
+		 * @param browserId
+		 * 		identification number
+		 *
+		 * @throws net.sf.uadetector.exception.IllegalNegativeArgumentException
+		 * 		if the given number is smaller than {@code 0}
+		 */
+		@javax.validation.constraints.NotNull
+		public Builder setBrowserId(int browserId)
+		{
+			Check.notNegative(browserId, "browserId");
+
+			this.browserId = browserId;
+			return this;
+		}
+
+		/**
 		 * Gets the identification number of an operating system entry.
 		 *
 		 * @return identification number of an operating system entry
@@ -203,24 +199,6 @@ public final class BrowserOperatingSystemMapping
 		public int getOperatingSystemId()
 		{
 			return operatingSystemId;
-		}
-
-		/**
-		 * Sets the identification number of an operating system entry.
-		 *
-		 * @param operatingSystemId
-		 * 		identification number
-		 *
-		 * @throws net.sf.uadetector.exception.IllegalNegativeArgumentException
-		 * 		if the given number is smaller than {@code 0}
-		 */
-		@javax.validation.constraints.NotNull
-		public Builder setOperatingSystemId(int operatingSystemId)
-		{
-			Check.notNegative(operatingSystemId, "operatingSystemId");
-
-			this.operatingSystemId = operatingSystemId;
-			return this;
 		}
 
 		/**
@@ -243,6 +221,24 @@ public final class BrowserOperatingSystemMapping
 			Check.notNull(operatingSystemId, "operatingSystemId");
 
 			this.setOperatingSystemId(Integer.parseInt(operatingSystemId.trim()));
+			return this;
+		}
+
+		/**
+		 * Sets the identification number of an operating system entry.
+		 *
+		 * @param operatingSystemId
+		 * 		identification number
+		 *
+		 * @throws net.sf.uadetector.exception.IllegalNegativeArgumentException
+		 * 		if the given number is smaller than {@code 0}
+		 */
+		@javax.validation.constraints.NotNull
+		public Builder setOperatingSystemId(int operatingSystemId)
+		{
+			Check.notNegative(operatingSystemId, "operatingSystemId");
+
+			this.operatingSystemId = operatingSystemId;
 			return this;
 		}
 

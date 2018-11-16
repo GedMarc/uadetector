@@ -298,11 +298,7 @@ public class Data
 		{
 			return false;
 		}
-		if (!version.equals(other.version))
-		{
-			return false;
-		}
-		return true;
+		return version.equals(other.version);
 	}
 
 	@Override

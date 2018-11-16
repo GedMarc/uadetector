@@ -321,6 +321,7 @@ public final class CachingXmlDataStore
 	 * 		if the given cache file can not be read
 	 * @throws net.sf.uadetector.exception.IllegalStateOfArgumentException
 	 * 		if no URL can be resolved to the given given file
+	 * @deprecated
 	 */
 	@javax.validation.constraints.NotNull
 	@Deprecated

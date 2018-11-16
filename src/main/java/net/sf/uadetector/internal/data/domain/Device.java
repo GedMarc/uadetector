@@ -149,11 +149,7 @@ public final class Device
 		{
 			return false;
 		}
-		if (!patterns.equals(other.patterns))
-		{
-			return false;
-		}
-		return true;
+		return patterns.equals(other.patterns);
 	}
 
 	@Override
@@ -250,16 +246,16 @@ public final class Device
 		}
 
 		@javax.validation.constraints.NotNull
-		public Builder setId(int id)
+		public Builder setId(@javax.validation.constraints.NotNull String id)
 		{
-			this.id = Check.notNegative(id, "id");
+			setId(Integer.parseInt(Check.notEmpty(id, "id")));
 			return this;
 		}
 
 		@javax.validation.constraints.NotNull
-		public Builder setId(@javax.validation.constraints.NotNull String id)
+		public Builder setId(int id)
 		{
-			setId(Integer.parseInt(Check.notEmpty(id, "id")));
+			this.id = Check.notNegative(id, "id");
 			return this;
 		}
 

@@ -21,6 +21,7 @@ import net.sf.uadetector.internal.data.domain.*;
 
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.logging.Level;
 
 /**
  * This class is intended to create instances of {@code Data}.
@@ -401,7 +402,7 @@ public class DataBuilder
 			}
 			catch (Exception e)
 			{
-				LOG.warning("Can not build operating system: " + e.getLocalizedMessage());
+				LOG.log(Level.WARNING, "Can not build operating system: " + e.getLocalizedMessage(), e);
 			}
 		}
 		return operatingSystems;
@@ -465,7 +466,7 @@ public class DataBuilder
 			}
 			catch (Exception e)
 			{
-				LOG.warning("Can not build browser: " + e.getLocalizedMessage());
+				LOG.log(Level.WARNING, "Can not build browser: " + e.getLocalizedMessage(), e);
 			}
 		}
 		return browsers;
@@ -483,8 +484,8 @@ public class DataBuilder
 			}
 			catch (Exception e)
 			{
-				LOG.warning("Can not build device '" + entry.getValue()
-				                                            .getName() + "': " + e.getLocalizedMessage());
+				LOG.log(Level.WARNING, "Can not build device '" + entry.getValue()
+				                                                       .getName() + "': " + e.getLocalizedMessage(), e);
 			}
 		}
 		return devices;
