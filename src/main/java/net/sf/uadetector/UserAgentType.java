@@ -38,8 +38,8 @@ public enum UserAgentType
 	EMAIL_CLIENT("Email client"),
 
 	/**
-	 * A <strong>news aggregator</strong>, also termed a <strong>feed aggregator<strong>, <strong>feed reader</strong>, <strong>news reader</strong>, <strong>RSS
-	 * reader</strong> or simply <strong>aggregator</strong>
+	 * A news aggregator, also termed a feed aggregator, feed reader, news reader, RSS
+	 * reader or simply aggregator
 	 */
 	FEED_READER("Feed Reader"),
 
