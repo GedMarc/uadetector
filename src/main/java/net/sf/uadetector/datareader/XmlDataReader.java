@@ -82,7 +82,7 @@ public final class XmlDataReader
 		}
 		catch (CanNotOpenStreamException e)
 		{
-			LOG.warning(e.getLocalizedMessage());
+			LOG.log(Level.WARNING, e.getLocalizedMessage(), e);
 		}
 
 		return data;

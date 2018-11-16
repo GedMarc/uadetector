@@ -211,11 +211,7 @@ public final class Robot
 		{
 			return false;
 		}
-		if (!icon.equals(other.icon))
-		{
-			return false;
-		}
-		return true;
+		return icon.equals(other.icon);
 	}
 
 	@Override

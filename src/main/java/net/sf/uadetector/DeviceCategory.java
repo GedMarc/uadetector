@@ -46,23 +46,7 @@ public final class DeviceCategory
 	 */
 	private DeviceCategory()
 	{
-		category = Category.UNKNOWN;
-		icon = "";
-		infoUrl = "";
-		name = "";
-		hash = buildHashCode(category, icon, infoUrl, name);
-	}
-
-	private static int buildHashCode(@javax.validation.constraints.NotNull Category category, @javax.validation.constraints.NotNull String icon, @javax.validation.constraints.NotNull String infoUrl,
-	                                 @javax.validation.constraints.NotNull String name)
-	{
-		int prime = 31;
-		int result = 1;
-		result = prime * result + category.hashCode();
-		result = prime * result + icon.hashCode();
-		result = prime * result + infoUrl.hashCode();
-		result = prime * result + name.hashCode();
-		return result;
+		this(Category.UNKNOWN, "icon", "infoUrl", "name");
 	}
 
 	public DeviceCategory(@javax.validation.constraints.NotNull Category category, @javax.validation.constraints.NotNull String icon, @javax.validation.constraints.NotNull String infoUrl,
@@ -73,6 +57,18 @@ public final class DeviceCategory
 		this.infoUrl = Check.notNull(infoUrl, "infoUrl");
 		this.name = Check.notEmpty(name, "name");
 		hash = buildHashCode(category, icon, infoUrl, name);
+	}
+
+	private int buildHashCode(@javax.validation.constraints.NotNull Category category, @javax.validation.constraints.NotNull String icon, @javax.validation.constraints.NotNull String infoUrl,
+	                          @javax.validation.constraints.NotNull String name)
+	{
+		int prime = 31;
+		int result = 1;
+		result = prime * result + category.hashCode();
+		result = prime * result + icon.hashCode();
+		result = prime * result + infoUrl.hashCode();
+		result = prime * result + name.hashCode();
+		return result;
 	}
 
 	@Override
@@ -137,11 +133,7 @@ public final class DeviceCategory
 		{
 			return false;
 		}
-		if (!name.equals(other.name))
-		{
-			return false;
-		}
-		return true;
+		return name.equals(other.name);
 	}
 
 	@Override

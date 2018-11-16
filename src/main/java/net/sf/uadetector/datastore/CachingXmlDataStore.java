@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.logging.Level;
 
 /**
  * Implementation of a {@link DataStore} which is able to recover <em>UAS data</em> in XML format from a cache file. If
@@ -39,7 +40,6 @@ import java.nio.charset.Charset;
 public final class CachingXmlDataStore
 		extends AbstractRefreshableDataStore
 {
-
 	/**
 	 * The default temporary-file directory
 	 */
@@ -47,7 +47,7 @@ public final class CachingXmlDataStore
 	/**
 	 * Corresponding default logger of this class
 	 */
-	private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(CachingXmlDataStore.class.toString());
+	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(CachingXmlDataStore.class.toString());
 	/**
 	 * Message for the log if the cache file is filled
 	 */
@@ -77,8 +77,6 @@ public final class CachingXmlDataStore
 	/**
 	 * Constructs an {@code CachingXmlDataStore} with the given arguments.
 	 *
-	 * @param data
-	 * 		first <em>UAS data</em> which will be available in the store
 	 * @param reader
 	 * 		data reader to read the given {@code dataUrl}
 	 * @param dataUrl
@@ -188,7 +186,10 @@ public final class CachingXmlDataStore
 		{
 			try
 			{
-				file.createNewFile();
+				if (!file.createNewFile())
+				{
+					throw new IOException("Can't create new file");
+				}
 			}
 			catch (IOException e)
 			{
@@ -223,18 +224,19 @@ public final class CachingXmlDataStore
 			try
 			{
 				fallbackDataStore = new CacheFileDataStore(reader.read(cacheFileUrl, charset), reader, cacheFileUrl, charset);
-				LOG.finer(MSG_CACHE_FILE_IS_FILLED);
+				log.finer(MSG_CACHE_FILE_IS_FILLED);
 			}
 			catch (RuntimeException e)
 			{
 				fallbackDataStore = fallback;
 				deleteCacheFile(cacheFile);
+				log.log(Level.FINEST, "Runtime in fallback", e);
 			}
 		}
 		else
 		{
 			fallbackDataStore = fallback;
-			LOG.finer(MSG_CACHE_FILE_IS_EMPTY);
+			log.finer(MSG_CACHE_FILE_IS_EMPTY);
 		}
 		return fallbackDataStore;
 	}
@@ -274,19 +276,26 @@ public final class CachingXmlDataStore
 		{
 			if (cacheFile.delete())
 			{
-				LOG.warning(String.format(MSG_CACHE_FILE_IS_DAMAGED_AND_DELETED, cacheFile.getPath()));
+				log.warning(String.format(MSG_CACHE_FILE_IS_DAMAGED_AND_DELETED, cacheFile.getPath()));
 			}
 			else
 			{
-				LOG.warning(String.format(MSG_CACHE_FILE_IS_DAMAGED, cacheFile.getPath()));
+				log.warning(String.format(MSG_CACHE_FILE_IS_DAMAGED, cacheFile.getPath()));
 			}
 		}
 		catch (Exception e)
 		{
-			LOG.warning(String.format(MSG_CACHE_FILE_IS_DAMAGED, cacheFile.getPath()));
+			log.log(Level.WARNING, String.format(MSG_CACHE_FILE_IS_DAMAGED, cacheFile.getPath()), e);
 		}
 	}
 
+	/**
+	 * @param fallback
+	 *
+	 * @return
+	 *
+	 * @deprecated
+	 */
 	@Deprecated
 	public static CachingXmlDataStore createCachingXmlDataStore(@javax.validation.constraints.NotNull DataStore fallback)
 	{

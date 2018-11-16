@@ -241,11 +241,11 @@ public abstract class AbstractRefreshableDataStore
 		}
 		catch (CanNotOpenStreamException e)
 		{
-			LOG.warning(String.format(MSG_URL_NOT_READABLE, e.getLocalizedMessage()));
+			LOG.log(Level.WARNING, String.format(MSG_URL_NOT_READABLE, e.getLocalizedMessage()), e);
 		}
 		catch (IllegalArgumentException e)
 		{
-			LOG.warning(MSG_FAULTY_CONTENT + " " + e.getLocalizedMessage());
+			LOG.log(Level.WARNING, MSG_FAULTY_CONTENT + " " + e.getLocalizedMessage(), e);
 		}
 		catch (RuntimeException e)
 		{

@@ -97,20 +97,12 @@ public final class UrlUtil
 		Check.notNull(url, "url");
 		Check.notNull(charset, "charset");
 
-		InputStream inputStream = open(url);
-		BufferedReader reader = null;
 		StringBuilder buffer = new StringBuilder();
-		boolean threw = true;
-		try
+		try (InputStream inputStream = open(url);
+		     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, charset))
+		)
 		{
-			reader = new BufferedReader(new InputStreamReader(inputStream, charset));
 			buffer.append(readAll(reader));
-			threw = false;
-		}
-		finally
-		{
-			Closeables.close(reader, threw);
-			Closeables.close(inputStream, false);
 		}
 		return buffer.toString();
 	}

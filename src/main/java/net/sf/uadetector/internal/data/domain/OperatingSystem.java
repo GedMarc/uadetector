@@ -208,11 +208,7 @@ public final class OperatingSystem
 		{
 			return false;
 		}
-		if (!icon.equals(other.icon))
-		{
-			return false;
-		}
-		return true;
+		return icon.equals(other.icon);
 	}
 
 	@Override
@@ -372,18 +368,18 @@ public final class OperatingSystem
 		}
 
 		@javax.validation.constraints.NotNull
-		public Builder setId(int id)
-		{
-			this.id = Check.notNegative(id, "id");
-			return this;
-		}
-
-		@javax.validation.constraints.NotNull
 		public Builder setId(@javax.validation.constraints.NotNull String id)
 		{
 			Check.notEmpty(id, "id");
 
 			this.setId(Integer.parseInt(id.trim()));
+			return this;
+		}
+
+		@javax.validation.constraints.NotNull
+		public Builder setId(int id)
+		{
+			this.id = Check.notNegative(id, "id");
 			return this;
 		}
 

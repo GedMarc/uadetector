@@ -189,11 +189,7 @@ public final class DevicePattern
 		{
 			return false;
 		}
-		if (pattern.flags() != other.pattern.flags())
-		{
-			return false;
-		}
-		return true;
+		return pattern.flags() == other.pattern.flags();
 	}
 
 	@Override

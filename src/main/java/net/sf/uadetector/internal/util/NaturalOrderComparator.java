@@ -31,7 +31,8 @@ public class NaturalOrderComparator
 		int len1 = s1.length();
 		int len2 = s2.length();
 		int i;
-		char c1, c2;
+		char c1;
+		char c2;
 		for (i = 0, c1 = 0, c2 = 0; (i < len1) && (i < len2) && (c1 = s1.charAt(i)) == (c2 = s2.charAt(i)); i++)
 		{
 		}
@@ -52,7 +53,8 @@ public class NaturalOrderComparator
 			}
 
 			// Scan all integer digits
-			int x1, x2;
+			int x1;
+			int x2;
 			for (x1 = i + 1; (x1 < len1) && Character.isDigit(s1.charAt(x1)); x1++)
 			{
 			}

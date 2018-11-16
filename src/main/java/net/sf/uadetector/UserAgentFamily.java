@@ -4443,7 +4443,7 @@ public enum UserAgentFamily
 	{
 		Check.notNull(family, "family");
 
-		UserAgentFamily result = UNKNOWN;
+		UserAgentFamily result;
 
 		// search by name
 		result = evaluateByName(family);

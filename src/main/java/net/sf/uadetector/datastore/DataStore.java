@@ -36,12 +36,16 @@ public interface DataStore
 
 	/**
 	 * URL to retrieve the current UAS data as XML
+	 *
+	 * @deprecated
 	 */
 	@Deprecated
 	String DEFAULT_DATA_URL = "http://user-agent-string.info/rpc/get_data.php?key=free&format=xml";
 
 	/**
 	 * URL to retrieve the current version of the UAS data
+	 *
+	 * @deprecated
 	 */
 	@Deprecated
 	String DEFAULT_VERSION_URL = "http://user-agent-string.info/rpc/get_data.php?key=free&format=ini&ver=y";

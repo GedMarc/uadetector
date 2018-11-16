@@ -29,7 +29,7 @@ public interface UpdateOperation
 	 * The default interval to check for updates is once per day
 	 */
 
-	long DEFAULT_UPDATE_INTERVAL = 1000 * 60 * 60 * 24;
+	long DEFAULT_UPDATE_INTERVAL = 1000 * 60 * 60 * 24L;
 
 	/**
 	 * This function checks whether updated UAS data are available and updates silently the data in a

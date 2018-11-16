@@ -25,6 +25,7 @@ import java.io.LineNumberReader;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.concurrent.ExecutorService;
+import java.util.logging.Level;
 import java.util.regex.Pattern;
 
 /**
@@ -144,8 +145,8 @@ public abstract class AbstractUpdateOperation
 		catch (IOException e)
 		{
 			LOG.info(MSG_NO_UPDATE_CHECK_POSSIBLE);
-			LOG.finer(String.format(MSG_NO_UPDATE_CHECK_POSSIBLE__DEBUG, e.getClass()
-			                                                              .getName(), e.getLocalizedMessage()));
+			LOG.log(Level.FINER, String.format(MSG_NO_UPDATE_CHECK_POSSIBLE__DEBUG, e.getClass()
+			                                                                         .getName(), e.getLocalizedMessage()), e);
 		}
 		if (hasUpdate(version, getCurrentVersion()))
 		{
@@ -175,14 +176,13 @@ public abstract class AbstractUpdateOperation
 
 	private static String retrieveRemoteVersion(@javax.validation.constraints.NotNull URL url, @javax.validation.constraints.NotNull Charset charset) throws IOException
 	{
-		InputStream stream = url.openStream();
-		InputStreamReader reader = new InputStreamReader(stream, charset);
-		LineNumberReader lnr = new LineNumberReader(reader);
-		String line = lnr.readLine();
-		lnr.close();
-		reader.close();
-		stream.close();
-		return line;
+		try (InputStream stream = url.openStream();
+		     InputStreamReader reader = new InputStreamReader(stream, charset);
+		     LineNumberReader lnr = new LineNumberReader(reader))
+		{
+			String line = lnr.readLine();
+			return line;
+		}
 	}
 
 	/**
@@ -197,9 +197,9 @@ public abstract class AbstractUpdateOperation
 	 */
 	static boolean hasUpdate(String newer, String older)
 	{
-		return VERSION_PATTERN.matcher(newer)
-		                      .matches() && VERSION_PATTERN.matcher(older)
-		                                                   .matches() ? newer.compareTo(older) > 0 : false;
+		return (VERSION_PATTERN.matcher(newer)
+		                       .matches() && VERSION_PATTERN.matcher(older)
+		                                                    .matches()) && newer.compareTo(older) > 0;
 	}
 
 	/**
@@ -220,14 +220,7 @@ public abstract class AbstractUpdateOperation
 	@Override
 	public void run()
 	{
-		executorService.execute(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				call();
-			}
-		});
+		executorService.execute(this::call);
 	}
 
 

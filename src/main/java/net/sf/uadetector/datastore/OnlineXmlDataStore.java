@@ -44,6 +44,8 @@ public final class OnlineXmlDataStore
 	 *
 	 * @param fallback
 	 * 		<em>UAS data</em> as fallback in case the data on the specified resource can not be read correctly
+	 *
+	 * @deprecated
 	 */
 	@Deprecated
 	public OnlineXmlDataStore(DataStore fallback)

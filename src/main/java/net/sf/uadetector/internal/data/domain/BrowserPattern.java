@@ -74,6 +74,7 @@ public final class BrowserPattern
 	 * @return negative value if one of the attributes of this instance is less, 0 if equal, or positive value if
 	 * 		greater than the other one
 	 */
+	@SuppressWarnings("Duplicates")
 	@Override
 	public int compareTo(BrowserPattern other)
 	{

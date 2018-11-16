@@ -311,7 +311,7 @@ public enum OperatingSystemFamily
 	{
 		Check.notNull(family, "family");
 
-		OperatingSystemFamily result = UNKNOWN;
+		OperatingSystemFamily result;
 
 		// search by name
 		result = evaluateByName(family);

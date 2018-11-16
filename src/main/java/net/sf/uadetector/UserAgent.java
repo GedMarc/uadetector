@@ -163,11 +163,7 @@ public final class UserAgent
 		{
 			return false;
 		}
-		if (!versionNumber.equals(other.versionNumber))
-		{
-			return false;
-		}
-		return true;
+		return versionNumber.equals(other.versionNumber);
 	}
 
 	@javax.validation.constraints.NotNull

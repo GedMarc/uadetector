@@ -5,6 +5,7 @@ package net.sf.uadetector.internal.data.domain;
  *
  * @author André Rouél
  */
+@FunctionalInterface
 public interface Identifiable
 {
 

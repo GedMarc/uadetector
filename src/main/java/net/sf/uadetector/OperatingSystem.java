@@ -192,11 +192,7 @@ public final class OperatingSystem
 		{
 			return false;
 		}
-		if (!versionNumber.equals(other.versionNumber))
-		{
-			return false;
-		}
-		return true;
+		return versionNumber.equals(other.versionNumber);
 	}
 
 	@Override

@@ -37,7 +37,7 @@ public final class UpdatingUserAgentStringParserImpl
 	/**
 	 * The default interval to check for updates is once per day
 	 */
-	public static final long DEFAULT_UPDATE_INTERVAL = 1000 * 60 * 60 * 24;
+	public static final long DEFAULT_UPDATE_INTERVAL = 1000 * 60 * 60 * 24L;
 	/**
 	 * {@link ScheduledExecutorService} to schedule commands to update the UAS data in defined intervals
 	 */

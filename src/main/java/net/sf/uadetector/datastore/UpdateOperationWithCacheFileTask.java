@@ -124,7 +124,7 @@ final class UpdateOperationWithCacheFileTask
 		}
 		catch (IOException e)
 		{
-			throw new IllegalStateException("The given file could not be read.");
+			throw new IllegalStateException("The given file could not be read.", e);
 		}
 	}
 
@@ -256,7 +256,7 @@ final class UpdateOperationWithCacheFileTask
 		}
 		catch (CanNotOpenStreamException e)
 		{
-			LOG.warning(String.format(RefreshableDataStore.MSG_URL_NOT_READABLE, e.getLocalizedMessage()));
+			LOG.log(Level.WARNING, String.format(RefreshableDataStore.MSG_URL_NOT_READABLE, e.getLocalizedMessage()), e);
 			readFallbackData();
 		}
 		catch (RuntimeException e)
@@ -290,7 +290,7 @@ final class UpdateOperationWithCacheFileTask
 		}
 		catch (CanNotOpenStreamException e)
 		{
-			LOG.warning(String.format(RefreshableDataStore.MSG_URL_NOT_READABLE, e.getLocalizedMessage()));
+			LOG.log(Level.WARNING, String.format(RefreshableDataStore.MSG_URL_NOT_READABLE, e.getLocalizedMessage()), e);
 		}
 		catch (RuntimeException e)
 		{
