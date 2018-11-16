@@ -53,7 +53,7 @@ public abstract class CompareNullSafe<T>
 	 * @param o2
 	 * 		the second reference
 	 *
-	 * @return a negative value if o1 < o2, zero if o1 = o2 and a positive value if o1 > o2
+	 * @return a negative value if o1 &lt; o2, zero if o1 = o2 and a positive value if o1 &gt; o2
 	 */
 	@Override
 	public int compare(T o1, T o2)
