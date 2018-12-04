@@ -49,7 +49,7 @@ public class Check
 
 		String[] params = Arrays.copyOfRange(message, 1, message.length);
 
-		return String.format(message[0], params);
+		return String.format(message[0], (Object[]) params);
 	}
 
 	public static <T extends Number> T notNegative(T type, String... message)
