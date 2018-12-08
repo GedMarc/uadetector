@@ -28,32 +28,23 @@ import java.util.TreeSet;
 public final class Browser
 		implements Identifiable, Serializable
 {
-
-	@NotNull
 	private final UserAgentFamily family;
-	@NotNull
 	private final String familyName;
 	private final int hash;
-	@NotNull
 	private final String icon;
 	private final int id;
-	@NotNull
 	private final String infoUrl;
+
 	private final OperatingSystem operatingSystem;
-	@NotNull
 	private final SortedSet<BrowserPattern> patterns;
-	@NotNull
 	private final String producer;
-	@NotNull
 	private final String producerUrl;
-	@NotNull
 	private final BrowserType type;
-	@NotNull
 	private final String url;
 
 	public Browser(int id, @NotNull UserAgentFamily family, @NotNull String familyName,
-	               @NotNull SortedSet<BrowserPattern> patterns, @NotNull BrowserType type,
-	               @NotNull OperatingSystem operatingSystem, @NotNull String icon, @NotNull String infoUrl,
+	               @NotNull SortedSet<BrowserPattern> patterns, BrowserType type,
+	               OperatingSystem operatingSystem, @NotNull String icon, @NotNull String infoUrl,
 	               @NotNull String producer, @NotNull String producerUrl, @NotNull String url)
 	{
 		this.id = Check.notNegative(id, "id");
@@ -71,7 +62,7 @@ public final class Browser
 	}
 
 	private static int buildHashCode(int id, @NotNull UserAgentFamily family, @NotNull String familyName,
-	                                 @NotNull SortedSet<BrowserPattern> patterns, @NotNull BrowserType type,
+	                                 @NotNull SortedSet<BrowserPattern> patterns, BrowserType type,
 	                                 OperatingSystem operatingSystem, @NotNull String icon, @NotNull String infoUrl,
 	                                 @NotNull String producer, @NotNull String producerUrl, @NotNull String url)
 	{
@@ -354,19 +345,16 @@ public final class Browser
 			url = builder.url;
 		}
 
-		@NotNull
 		public Browser build()
 		{
 			return new Browser(id, family, familyName, patterns, type, operatingSystem, icon, infoUrl, producer, producerUrl, url);
 		}
 
-		@NotNull
 		public Builder copy()
 		{
 			return new Builder(this);
 		}
 
-		@NotNull
 		public UserAgentFamily getFamily()
 		{
 			return family;
@@ -379,7 +367,6 @@ public final class Browser
 			return this;
 		}
 
-		@NotNull
 		public String getFamilyName()
 		{
 			return familyName;
@@ -392,7 +379,6 @@ public final class Browser
 			return setFamily(UserAgentFamily.evaluate(familyName));
 		}
 
-		@NotNull
 		public String getIcon()
 		{
 			return icon;
@@ -424,7 +410,6 @@ public final class Browser
 			return this;
 		}
 
-		@NotNull
 		public String getInfoUrl()
 		{
 			return infoUrl;
@@ -449,7 +434,6 @@ public final class Browser
 			return this;
 		}
 
-		@NotNull
 		public SortedSet<BrowserPattern> getPatterns()
 		{
 			return patterns;
@@ -462,7 +446,6 @@ public final class Browser
 			return this;
 		}
 
-		@NotNull
 		public String getProducer()
 		{
 			return producer;
@@ -475,7 +458,6 @@ public final class Browser
 			return this;
 		}
 
-		@NotNull
 		public String getProducerUrl()
 		{
 			return producerUrl;
@@ -520,7 +502,6 @@ public final class Browser
 			return this;
 		}
 
-		@NotNull
 		public String getUrl()
 		{
 			return url;
