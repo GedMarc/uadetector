@@ -11,5 +11,4 @@ module net.sf.uadetector.core {
 	requires java.xml;
 
 	requires java.logging;
-
 }
